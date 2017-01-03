@@ -188,6 +188,22 @@ set nobackup
 set nowb
 set noswapfile
 
+" set cursorline
+" only show cursorline in current active buffer
+" au BufEnter * setlocal cursorline
+" au BufLeave * setlocal nocursorline
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
+augroup CursorColumn
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+    au WinLeave * setlocal nocursorcolumn
+augroup END
+
 " =========== END Basic Vim Settings ===========
 
 
@@ -366,5 +382,14 @@ endif
 " https://github.com/c9s/perlomni.vim
 " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+" enable Delimite Mate
+let delimitMate_expand_cr = 1
+
+" settings for vim-indent-guides
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+nnoremap <F6> :IndentGuidesToggle<cr>
 
 " =========== END Plugin Settings =========="
