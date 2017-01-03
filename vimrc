@@ -215,6 +215,10 @@ Plugin 'Shougo/unite.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'brookhong/cscope.vim'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'valloric/vim-indent-guides'
+Plugin 'raimondi/delimitmate'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -249,7 +253,8 @@ nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 nnoremap <leader>w :<C-u>Unite -no-split tab<cr>
 
 " Mapping to NERDTree
-nnoremap <C-n> :NERDTreeToggle<cr>
+" nnoremap <C-n> :NERDTreeToggle<cr>
+nnoremap <C-n> :NERDTreeTabsToggle<CR>
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
 let g:NERDTreeWinSize =  60
 
