@@ -25,3 +25,12 @@ vimproc.
 cd ~/.vim/bundle/vimproc.vim
 make
 ```
+
+### cscope\_maps.vimrc
+
+If VIM is compiled with cscope supporting, editor `~/.vim/bundle/cscope_maps/plugin/cscope_maps.vim`
+and add following line before line 42 `cs add cscope.out`.
+
+```
+set nocscopeverbose
+```
