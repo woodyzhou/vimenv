@@ -178,11 +178,11 @@ augroup END
 
 augroup filetypedetect
       au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
-      au BufReadPost *.scala set syntax=scala
-			au BufNewFile,BufRead *.hql set filetype=hive expandtab
-			au BufNewFile,BufRead *.q set filetype=hive expandtab
 augroup END
 
+au BufReadPost *.scala set syntax=scala
+au BufNewFile,BufRead *.hql set filetype=hive expandtab
+au BufNewFile,BufRead *.q set filetype=hive expandtab
 
 set nobackup
 set nowb
@@ -240,6 +240,9 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'chazy/cscope_maps'
+Plugin 'scrooloose/syntastic'
+Plugin 'autowitch/hive.vim'
+Plugin 'motus/pig.vim'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -416,5 +419,13 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " =========== END Plugin Settings =========="
