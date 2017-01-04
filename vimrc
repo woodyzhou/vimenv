@@ -1,5 +1,6 @@
 " ========== Vim Basic Settings ============="
 set nocompatible              " be iMproved
+set nocscopeverbose   "let cscope_maps.vim to handle cscope
 syn on
 syntax enable
 colorscheme molokai
@@ -236,6 +237,9 @@ Plugin 'valloric/vim-indent-guides'
 Plugin 'raimondi/delimitmate'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'chazy/cscope_maps'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -393,40 +397,24 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 nnoremap <F6> :IndentGuidesToggle<cr>
 
+" neosnippet.vim settings
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" " cscope.vim settings
-" let g:cscope_ignored_dir = 'node_modules$\|dist$\|target$'
-" let g:cscope_interested_files = '\.c$\|\.cpp$\|\.h$\|\.hpp\|\.java|.\scala'
-"
-" nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-" nnoremap <leader>l :call ToggleLocationList()<CR>
-"
-" " s: Find this C symbol
-" nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" " g: Find this definition
-" nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" " d: Find functions called by this function
-" nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" " c: Find functions calling this function
-" nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" " t: Find this text string
-" nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" " e: Find this egrep pattern
-" nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" " f: Find this file
-" nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" " i: Find files #including this file
-" nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-  endif
-endfunction
-au BufEnter * call LoadCscope()
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 
 " =========== END Plugin Settings =========="
