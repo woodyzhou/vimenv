@@ -17,7 +17,8 @@ set modelines=0
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set noexpandtab
+" set noexpandtab  "Use Tab
+set expandtab  "Use Space
 set smarttab
 
 " More Common Settings.
