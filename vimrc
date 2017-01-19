@@ -3,7 +3,8 @@ set nocompatible              " be iMproved
 set nocscopeverbose   "let cscope_maps.vim to handle cscope
 syn on
 syntax enable
-colorscheme molokai
+" colorscheme molokai
+colorscheme Tomorrow-Night-Eighties
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
@@ -244,6 +245,7 @@ Plugin 'chazy/cscope_maps'
 " Plugin 'scrooloose/syntastic'
 Plugin 'autowitch/hive.vim'
 Plugin 'motus/pig.vim'
+Plugin 'elzr/vim-json'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -429,4 +431,19 @@ endif
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
+
+" vim-json Settings
+" let g:vim_json_syntax_conceal = 0  " disable conceal
+au! BufRead,BufNewFile *.json set filetype=json
+
+" augroup json_autocmd
+"   autocmd!
+"   autocmd FileType json set autoindent
+"   autocmd FileType json set formatoptions=tcq2l
+"   autocmd FileType json set textwidth=78 shiftwidth=2
+"   autocmd FileType json set softtabstop=2 tabstop=8
+"   autocmd FileType json set expandtab
+"   autocmd FileType json set foldmethod=syntax
+" augroup END
+
 " =========== END Plugin Settings =========="
