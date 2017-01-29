@@ -5,6 +5,7 @@ syn on
 syntax enable
 " colorscheme molokai
 colorscheme Tomorrow-Night-Eighties
+" colorscheme atom
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
@@ -246,6 +247,7 @@ Plugin 'chazy/cscope_maps'
 Plugin 'autowitch/hive.vim'
 Plugin 'motus/pig.vim'
 Plugin 'elzr/vim-json'
+Plugin 'chemzqm/vim-jsx-improve'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -359,9 +361,9 @@ endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+" inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 1
@@ -445,5 +447,8 @@ au! BufRead,BufNewFile *.json set filetype=json
 "   autocmd FileType json set expandtab
 "   autocmd FileType json set foldmethod=syntax
 " augroup END
+
+" jsx Settings
+let g:jsx_ext_required = 1 "Allow JSX in normal JS files
 
 " =========== END Plugin Settings =========="
