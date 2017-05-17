@@ -248,6 +248,7 @@ Plugin 'autowitch/hive.vim'
 Plugin 'motus/pig.vim'
 Plugin 'elzr/vim-json'
 Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'leafgarland/typescript-vim'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
