@@ -273,6 +273,7 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
       \ '\.rubygems/',
       \ 'target/',
       \ 'vendor/',
+      \ 'node_modules/',
       \ ], '\|'))
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
