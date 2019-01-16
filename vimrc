@@ -249,6 +249,7 @@ Plugin 'motus/pig.vim'
 Plugin 'elzr/vim-json'
 Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'posva/vim-vue'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -274,7 +275,51 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
       \ 'target/',
       \ 'vendor/',
       \ 'node_modules/',
+      \ 'babel_cache/',
+      \ '\.vscode/',
+      \ '\.gitignore',
+      \ '\.dockerignore',
+      \ '\.DS_Store',
+      \ 'dist/',
       \ ], '\|'))
+
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
+
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
@@ -294,6 +339,39 @@ let g:scala_sort_across_groups=1
 let g:scala_first_party_namespaces='\(com.ebay.bpe\|controllers\|views\|models\|util\|de.\)'
 
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+  \ }
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 't:types',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'I:imports',
+    \ 'e:enums',
+  \ ]
+  \ }
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'scala',
     \ 'sro'       : '.',
@@ -310,6 +388,7 @@ let g:tagbar_type_scala = {
       \ 'v:variables:1'
     \ ]
 		\ }
+
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -452,5 +531,7 @@ au! BufRead,BufNewFile *.json set filetype=json
 
 " jsx Settings
 let g:jsx_ext_required = 1 "Allow JSX in normal JS files
+
+let g:used_javascript_libs = 'vue,react,underscore,jquery,backbone,angularjs,requirejs'
 
 " =========== END Plugin Settings =========="
