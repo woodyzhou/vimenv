@@ -223,7 +223,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Plugin 'tomtom/tcomment_vim'
 Bundle 'mileszs/ack.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'shougo/vimproc.vim'
 Bundle 'Shougo/neocomplete'
@@ -452,5 +454,7 @@ au! BufRead,BufNewFile *.json set filetype=json
 
 " jsx Settings
 let g:jsx_ext_required = 1 "Allow JSX in normal JS files
+
+let g:airline_powerline_fonts = 1
 
 " =========== END Plugin Settings =========="
